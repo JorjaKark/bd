@@ -14,19 +14,14 @@ Star chats you use often
 
   *
 
-    Identifying Functional Dependencies in a Relational Database Schema
-     <https://claude.ai/chat/88b29190-ff66-4044-8de5-77fc569ce92e>
   *
 
-    Transforming Conceptual to Relational Database Schema
-     <https://claude.ai/chat/38f33b1a-44f9-4caf-baaa-5ea35b152243>
 
 View all
 
 <https://claude.ai/recents>
 Free plan
 NO
-up202303637@up.pt
 
 Help & support <https://support.anthropic.com/en/>
 NO
