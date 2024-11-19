@@ -23,7 +23,7 @@ CREATE TABLE Item (
     nome TEXT NOT NULL,
     dataEntrada DATE,
     categoria TEXT,
-    dimensoes INTEGER NOT NULL nCHECK ((dimensoes > 0)),
+    dimensoes Text NOT NULL,
     material TEXT,
     precoVenda REAL CHECK (( precoVenda IS NULL OR precoVenda > 0 )), -- pode ser NULL quando não está 'à venda'
     idLoja INTEGER,
@@ -53,7 +53,7 @@ CREATE TABLE TermoEmprestimo (
     idItem INTEGER NOT NULL UNIQUE, --um item pode ter apenas um termo de empréstimo ativo
     FOREIGN KEY (idItem) REFERENCES Item(idItem) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT check_datas CHECK (dataLimitePagamento > dataInicioEmprestimo),
-    --constrait:garantir que o valor com juros é 110% do valor do empréstimo
+    --constraint:garantir que o valor com juros é 110% do valor do empréstimo
     --(a taxa a ser aplicada é sempre de 10% do valor do empréstimo)
     CONSTRAINT check_juros CHECK (valorDevolverComJuros = valorEmprestimo * 1.10)
 );
@@ -86,13 +86,14 @@ CREATE TABLE Funcionario (
 
 -- esta tabela referencia: item, cliente
 CREATE TABLE Transacao (
+    idTransacao INTEGER NOT NULL,
     idItem INTEGER NOT NULL,
     nifCliente INTEGER NOT NULL,
     tipo TEXT NOT NULL CHECK (tipo IN ('compra', 'requisição de empréstimo', 'devolução de empréstimo')),
     valor REAL NOT NULL,
     dataTransacao DATE NOT NULL,
     metodoPagamento TEXT NOT NULL CHECK (metodoPagamento IN ('transferência bancária', 'dinheiro')),
-    PRIMARY KEY (idItem, nifCliente),
+    PRIMARY KEY (idTransacao),
     FOREIGN KEY (idItem) REFERENCES Item(idItem) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (nifCliente) REFERENCES Cliente(nifCliente) ON DELETE CASCADE ON UPDATE CASCADE
 );
