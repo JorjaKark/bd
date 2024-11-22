@@ -1,8 +1,4 @@
 PRAGMA foreign_keys	= ON;
--- Notas: Endereços escritos assim ou só a rua? assim é melhor porque fiz trocadilhos com o nome das localidades
---        variar prazo pagamento? (TermoEmprestimo - e vai afetar outras tabelas tb)
---        adicionar mais funcionarios para adicionar avaliações? (Pessoa, Funcionario --> Avaliacao)
-
 
 -- Inserção de registos na tabela Loja
 INSERT INTO Loja (idLoja, nome, endereco, telefone) VALUES 
@@ -11,7 +7,7 @@ INSERT INTO Loja (idLoja, nome, endereco, telefone) VALUES
 (3, 'Póvoa de Valor: Loja de Penhores', 'Rua 25 de Novembro, Póvoa de Lanhoso, Braga', 253995105),
 (4, 'Ponto do Penhor', 'Rua Padre Silva Gonçalves, Caldelas, Braga', 253361111),
 (5, 'AveirOuro: Loja de Penhores', 'Rua de Santo António, Ílhavo, Aveiro', 234361520),
-(6, 'Penhor & Valor', 'Comendador Silva, Vila Pouca de Aguiar, Vila Real', 259417590);
+(6, 'Penhor & Valor', 'Rua Comendador Silva, Vila Pouca de Aguiar, Vila Real', 259417590);
 
 
 -- Inserção de registos na tabela Item
@@ -93,7 +89,11 @@ INSERT INTO Pessoa (nif, nome, telefone, email) VALUES
 (444555666, 'André Humberto Leite', 923344120, 'andreleite@gmail.com'),
 (555666777, 'Leandro Manuel Brito Barros', 914852301, 'leandrobarros@gmail.com'),
 (666777888, 'Gonçalo José Barbosa Moura', 969980022, 'goncalomoura@gmail.com'),
-(777888999, 'Luísa Conceição Navarro', 933021527, 'luisanavarro@gmail.com');
+(777888999, 'Luísa Conceição Navarro', 933021527, 'luisanavarro@gmail.com'),
+(888999111, 'Renata Saavedra Soares', 925945220, 'emp.renata@penhores.pt'),
+(999111222, 'Carlos Maurício Leal', 931103256, 'emp.carlos@penhores.pt'),
+(999888777, 'Alberto Carneiro Ribas', 967230058, 'emp.alberto@penhores.pt'),
+(888777666, 'Tiago Roberto Proença Oliveira', 919009773, 'emp.tiago@penhores.pt');
 
 
 -- Inserção de registos na tabela Cliente
@@ -117,7 +117,11 @@ INSERT INTO Funcionario (nifFuncionario, salario, idLoja) VALUES
 (333333333, 885.00, 3),
 (444444444, 865.00, 4),
 (555555555, 830.00, 5),
-(666666666, 830.00, 6);
+(666666666, 830.00, 6),
+(888999111, 870.00, 1),
+(999111222, 910.00, 2),
+(999888777, 835.00, 3),
+(888777666, 910.00, 4);
 
 
 -- Inserção de registos na tabela Transacao
@@ -146,15 +150,19 @@ INSERT INTO Transacao (idTransacao, idItem, nifCliente, tipo, valor, dataTransac
 
 -- Inserção de registos na tabela Avaliacao
 INSERT INTO Avaliacao (idAvaliacao, idItem, nifFuncionario, dataAvaliacao, notasAvaliacao, valorAvaliado, estadoConservacao) VALUES 
-(1, 1, 111111111, '2023-08-06', 'Colar em ótimo estado.', 1200.00, 'Ótimo'),
-(2, 2, 555555555, '2024-08-09', 'Pintura bem preservada, tela sem danos.', 2500.00, 'Ótimo'),
-(3, 3, 222222222, '2024-08-16', 'Instrumento com desgaste no verniz.', 1500.00, 'Bom'),
-(4, 4, 111111111, '2024-08-22', 'Funcional, com marcas de uso.', 300.00, 'Bom'),
-(5, 5, 666666666, '2024-08-27', 'Conjunto completo e em excelente estado.', 1800.00, 'Ótimo'),
-(6, 6, 444444444, '2024-09-08', 'Funcionamento sem irregularidades. Sinais leves de uso.', 2500.00, 'Muito Bom'),
-(7, 7, 555555555, '2024-09-30', 'Anel impecável. Materiais genuínos.', 8000.00, 'Excelente'),
-(8, 8, 222222222, '2023-10-01', 'Mecanismo funcional. Algum desgaste é evidente.', 900.00, 'Bom'),
-(9, 9, 666666666, '2024-10-19', 'Conjunto completo e bem conservado.', 3500.00, 'Muito Bom'),
-(10, 10, 333333333, '2024-10-21', 'Moeda com alguns sinais de oxidação.', 500.00, 'Bom'),
-(11, 11, 444444444, '2024-11-10', 'Sem imperfeições visíveis. Componentes bem conservados.', 2000.00, 'Ótimo'),
-(12, 12, 333333333, '2024-11-21', 'Câmara funciona corretamente. Pequenos riscos na superfície.', 800.00, 'Bom');
+(1, 1, 111111111, '2023-08-06', 'Colar em ótimo estado.', 1200.00, 'novo'),
+(2, 2, 555555555, '2024-08-09', 'Pintura bem preservada, tela sem danos.', 2500.00, 'novo'),
+(3, 2, 888777666, '2024-08-13', 'Pintura em muito bom estado. Pequenas imperfeições.', 2700.00, 'semi-novo'),
+(4, 3, 222222222, '2024-08-16', 'Instrumento com desgaste no verniz.', 1500.00, 'usado'),
+(5, 4, 111111111, '2024-08-22', 'Funcional, com marcas de uso.', 300.00, 'muito usado'),
+(6, 5, 666666666, '2024-08-27', 'Conjunto completo e em excelente estado.', 1800.00, 'semi-novo'),
+(7, 6, 444444444, '2024-09-08', 'Funcionamento sem irregularidades. Sinais leves de uso.', 2500.00, 'usado'),
+(8, 7, 555555555, '2024-09-30', 'Anel impecável. Materiais genuínos.', 8000.00, 'novo'),
+(9, 8, 222222222, '2023-10-01', 'Mecanismo funcional. Algum desgaste é evidente.', 900.00, 'muito usado'),
+(10, 9, 666666666, '2024-10-19', 'Conjunto completo e bem conservado.', 3500.00, 'semi-novo'),
+(11, 10, 333333333, '2024-10-21', 'Moeda com alguns sinais de oxidação.', 500.00, 'usado'),
+(12, 11, 444444444, '2024-11-10', 'Sem imperfeições visíveis. Componentes bem conservados.', 1900.00, 'novo'),
+(13, 10, 888999111, '2024-10-28', 'Bem conservada. Levemente oxidada.', 530.00, 'usado'),
+(14, 12, 333333333, '2024-11-21', 'Câmara funciona corretamente. Pequenos riscos na superfície.', 800.00, 'semi-novo'),
+(15, 11, 999111222, '2024-11-20', 'Em ótimo estado de conservação. Produz som claro.', 2200.00, 'novo'),
+(16, 12, 999888777, '2024-11-23', 'Danos leves na pintura da câmara.', 760.00, 'semi-novo');
