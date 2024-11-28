@@ -1,6 +1,6 @@
 https://docs.google.com/document/d/1OgnnDmyLNG7FQ9gr-XBLzAGjcnD0WsJRTyWWHm-5I_I/edit?usp=sharing
 
-RESUMO DAS ALTERAÇÔES DO CRREATE ! PRA O 2:
+RESUMO DAS ALTERAÇÔES DO CRREATE 1 PRA O 2:
 1. Validação de Campos
    Sugerido: Email: ACHECK (email LIKE '%_@__%.__%' AND email REGEXP '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}$')
             Telefone: CHECK (length(telefone) = 9 AND telefone REGEXP '^(9[1236][0-9]{7})$')
