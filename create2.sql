@@ -13,7 +13,7 @@ CREATE TABLE Loja (
     idLoja INTEGER NOT NULL PRIMARY KEY,
     nome TEXT NOT NULL,
     endereco TEXT NOT NULL UNIQUE,
-    telefone TEXT NOT NULL UNIQUE,
+    telefone TEXT NOT NULL UNIQUE
 );
 
 --esta tabela referencia: loja
@@ -58,7 +58,7 @@ CREATE TABLE TermoEmprestimo (
 );
 
 --esta tabela nao tem referencias
-CREATE TABLE Pessoa {
+CREATE TABLE Pessoa (
     nif TEXT NOT NULL PRIMARY KEY CHECK (nif REGEXP '^[0-9]{9}$'),
     nome TEXT NOT NULL,
     telefone TEXT NOT NULL,
@@ -67,7 +67,7 @@ CREATE TABLE Pessoa {
         email LIKE '%@%.%' --mais simples --consistencia
     )
     CONSTRAINT unique_nif_telefone_email_pessoa UNIQUE (nif, telefone, email)
-}
+);
 
 --  esta tabela  nao tem referencias
 CREATE TABLE Cliente (
@@ -95,7 +95,7 @@ CREATE TABLE Transacao (
     valor REAL NOT NULL,
     dataTransacao DATE NOT NULL,
     metodoPagamento TEXT NOT NULL CHECK (metodoPagamento IN ('transferência bancária', 'dinheiro')),
-    PRIMARY KEY (idTransacao),
+    PRIMARY KEY (idTransacao, idItem),
     FOREIGN KEY (idItem) REFERENCES Item(idItem) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (nifCliente) REFERENCES Cliente(nifCliente) ON DELETE CASCADE ON UPDATE CASCADE
 );

@@ -13,7 +13,7 @@ INSERT INTO Loja (idLoja, nome, endereco, telefone) VALUES
 -- Inserção de registos na tabela Item
 INSERT INTO Item (idItem, nome, dataEntrada, categoria, dimensoes, material, precoVenda, idLoja) VALUES 
 (1, 'Colar de Ouro', '2023-08-05', 'Joias e Acessórios', '40 x 2 x 0.2 cm', 'Ouro', 1400.00, 1),
-(2, 'Quadro', '2024-08-08', 'Arte', '60 x 80 x 3 cm', 'Tela pintada a Óleo', 2700.00, 5),
+(2, 'Quadro', '2024-08-08', 'Arte', '60 x 80 x 3 cm', 'Arte', 2700.00, 5), --alterei esta categoria (antes estava Pintura a oleo ou algo do genero)
 (3, 'Guitarra Acústica', '2024-08-15', 'Instrumentos Musicais', '100 x 38 x 12 cm', 'Madeira', 1600.00, 2),
 (4, 'Isqueiro Antigo', '2024-08-21', 'Colecionáveis e Antiguidades', '7 x 3.5 x 1.5 cm', 'Bronze', 420.00, 1),
 (5, 'Serviço de Chá', '2024-08-26', 'Louça e Cerâmica', '30 x 30 x 20 cm', 'Porcelana', 1950.00, 6),
