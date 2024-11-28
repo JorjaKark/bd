@@ -59,7 +59,7 @@ CREATE TABLE TermoEmprestimo (
 
 --esta tabela nao tem referencias
 CREATE TABLE Pessoa (
-    nif TEXT NOT NULL PRIMARY KEY
+    nif TEXT NOT NULL PRIMARY KEY,
     nome TEXT NOT NULL,
     telefone TEXT NOT NULL,
     email TEXT NOT NULL,
@@ -87,7 +87,7 @@ CREATE TABLE Funcionario (
 CREATE TABLE Transacao (
     idTransacao INTEGER NOT NULL,
     idItem INTEGER NOT NULL,
-    nifCliente INTEGER NOT NULL,
+    nifCliente TEXT NOT NULL,
     tipo TEXT NOT NULL CHECK (tipo IN ('compra', 'requisição de empréstimo', 'devolução de empréstimo')),
     valor REAL NOT NULL,
     dataTransacao DATE NOT NULL,

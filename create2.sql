@@ -69,14 +69,16 @@ CREATE TABLE TermoEmprestimo (
 
 --esta tabela nao tem referencias
 CREATE TABLE Pessoa (
-    nif TEXT NOT NULL PRIMARY KEY CHECK (nif REGEXP '^[0-9]{9}$'),
+    nif TEXT NOT NULL PRIMARY KEY,
     nome TEXT NOT NULL,
     telefone TEXT NOT NULL,
     email TEXT NOT NULL CHECK (
         email LIKE '%_@__%.__%' AND
         email LIKE '%@%.%' --mais simples --consistencia
     ),
-    CONSTRAINT unique_nif_telefone_email_pessoa UNIQUE (nif, telefone, email)
+    CONSTRAINT unique_nif_telefone_email_pessoa UNIQUE (nif, telefone, email),
+    CHECK (LENGTH(nif) = 9 AND nif GLOB '[0-9]*'),
+    CHECK (LENGTH(telefone) = 9 AND telefone GLOB '[0-9]*')
 );
 
 --  esta tabela  nao tem referencias
@@ -100,7 +102,7 @@ CREATE TABLE Funcionario (
 CREATE TABLE Transacao (
     idTransacao INTEGER NOT NULL,
     idItem INTEGER NOT NULL,
-    nifCliente INTEGER NOT NULL,
+    nifCliente TEXT NOT NULL,
     tipo TEXT NOT NULL CHECK (tipo IN ('compra', 'requisição de empréstimo', 'devolução de empréstimo')),
     valor REAL NOT NULL,
     dataTransacao DATE NOT NULL,
