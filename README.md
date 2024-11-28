@@ -28,7 +28,7 @@ https://docs.google.com/document/d/1OgnnDmyLNG7FQ9gr-XBLzAGjcnD0WsJRTyWWHm-5I_I/
    - **MAS ONDE É QUE EU USEI O RAIO DO SELECT * ??????** Não sei... mas acho estranho a IA ter sugerido uma cena que não existia...
 
 ### 3. **Campos Opcionais/Nulos**
-   4.1 **SUGERIDO**: 
+   3.1 **SUGERIDO**: 
    - Definir valores padrão:
      ```sql
      ALTER TABLE Item
@@ -42,7 +42,7 @@ https://docs.google.com/document/d/1OgnnDmyLNG7FQ9gr-XBLzAGjcnD0WsJRTyWWHm-5I_I/
      ALTER COLUMN material SET DEFAULT 'Não Especificado';
      ```
 
-   4.2 **SUGERIDO**:
+   3.2 **SUGERIDO**:
    - Validação de valores para `categoria`:
      ```sql
      CREATE TABLE Item (
