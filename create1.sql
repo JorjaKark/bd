@@ -12,9 +12,8 @@ DROP TABLE IF EXISTS Loja;
 CREATE TABLE Loja (
     idLoja INTEGER NOT NULL PRIMARY KEY,
     nome TEXT NOT NULL,
-    endereco TEXT NOT NULL,
-    telefone INTEGER NOT NULL,
-    UNIQUE(nome, endereco, telefone)
+    endereco TEXT NOT NULL UNIQUE,
+    telefone TEXT NOT NULL UNIQUE,
 );
 
 --esta tabela referencia: loja
@@ -60,11 +59,11 @@ CREATE TABLE TermoEmprestimo (
 
 --esta tabela nao tem referencias
 CREATE TABLE Pessoa {
-    nif INTEGER NOT NULL PRIMARY KEY,
+    nif TEXT NOT NULL PRIMARY KEY
     nome TEXT NOT NULL,
     telefone TEXT NOT NULL,
     email TEXT NOT NULL,
-    UNIQUE(nif, telefone, email)
+    CONSTRAINT unique_nif_telefone_email_pessoa UNIQUE (nif, telefone, email)
 }
 
 --  esta tabela  nao tem referencias
@@ -76,7 +75,7 @@ CREATE TABLE Cliente (
 
 -- esta tabela referencia: Loja
 CREATE TABLE Funcionario (
-    nifFuncionario INTEGER NOT NULL PRIMARY KEY,
+    nifFuncionario TEXT NOT NULL PRIMARY KEY,
     salario REAL NOT NULL CHECK (salario > 0),
     idLoja INTEGER NOT NULL,
     FOREIGN KEY (nifFuncionario) REFERENCES Pessoa(nif) ON DELETE CASCADE ON UPDATE CASCADE,
