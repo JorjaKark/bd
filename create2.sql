@@ -21,13 +21,23 @@ CREATE TABLE Item (
     idItem INTEGER NOT NULL PRIMARY KEY,
     nome TEXT NOT NULL,
     dataEntrada DATE,
-    categoria TEXT,
+    categoria TEXT NOT NULL CHECK (
+        categoria IN ('Joias e Acessórios', 'Arte', 'Instrumentos Musicais',
+        'Colecionáveis e Antiguidades',
+        'Louça e Cerâmica',
+        'Tecnologia e Informática',
+        'Desportos e Lazer', 'Outros')
+    ),
     dimensoes TEXT NOT NULL,
     material TEXT,
     precoVenda REAL CHECK (( precoVenda IS NULL OR precoVenda > 0 )), -- pode ser NULL quando não está 'à venda'
     idLoja INTEGER,
     FOREIGN KEY (idLoja) REFERENCES Loja(idLoja) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+ALTER TABLE Item 
+    ALTER COLUMN categoria SET DEFAULT 'Não Especificado',
+    ALTER COLUMN material SET DEFAULT 'Não Especificado';
 
 --esta tabela referencia: Item
 CREATE TABLE Estado (
@@ -65,7 +75,7 @@ CREATE TABLE Pessoa (
     email TEXT NOT NULL CHECK (
         email LIKE '%_@__%.__%' AND
         email LIKE '%@%.%' --mais simples --consistencia
-    )
+    ),
     CONSTRAINT unique_nif_telefone_email_pessoa UNIQUE (nif, telefone, email)
 );
 
