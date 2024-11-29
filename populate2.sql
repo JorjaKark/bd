@@ -137,7 +137,7 @@ INSERT INTO Transacao (idTransacao, idItem, nifCliente, tipo, valor, dataTransac
 (7, 6, 333444555, 'requisição de empréstimo', 1500.00, '2024-09-07', 'transferência bancária'),
 (8, 3, 999999999, 'devolução de empréstimo', 990.00, '2024-09-11', 'dinheiro'),
 (9, 5, 222333444, 'devolução de empréstimo', 1188.00, '2024-09-17', 'transferência bancária'),
-(10, 2, 888888888, 'compra', 2700.00, '2024-09-26', 'transferência bancária'),
+(10, 2, 666777888, 'compra', 2700.00, '2024-09-26', 'transferência bancária'), --- alterei idCliente de acordo com IA
 (11, 7, 444555666, 'requisição de empréstimo', 4800.00, '2024-09-29', 'transferência bancária'),
 (12, 8, 555666777, 'requisição de empréstimo', 540.00, '2024-09-30', 'dinheiro'),
 (13, 4, 111222333, 'compra', 370.00, '2024-09-30', 'dinheiro'), --- mantive e só mudei valor compra, de acordo com IA
