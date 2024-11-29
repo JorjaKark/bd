@@ -93,7 +93,8 @@ INSERT INTO Pessoa (nif, nome, telefone, email) VALUES
 (888999111, 'Renata Saavedra Soares', 925945220, 'emp.renata@penhores.pt'),
 (999111222, 'Carlos Maurício Leal', 931103256, 'emp.carlos@penhores.pt'),
 (999888777, 'Alberto Carneiro Ribas', 967230058, 'emp.alberto@penhores.pt'),
-(888777666, 'Tiago Roberto Proença Oliveira', 919009773, 'emp.tiago@penhores.pt');
+(888777666, 'Tiago Roberto Proença Oliveira', 919009773, 'emp.tiago@penhores.pt'),
+(777666555, 'Ricardo Sá Vilar', 919876543, 'ricardovilar@gmail.com'); --- adicionado pela IA
 
 
 -- Inserção de registos na tabela Cliente
@@ -107,7 +108,8 @@ INSERT INTO Cliente (nifCliente) VALUES
 (444555666),
 (555666777),
 (666777888),
-(777888999);
+(777888999),
+(777666555); --- adicionado pela IA
 
 
 -- Inserção de registos na tabela Funcionario
@@ -138,13 +140,13 @@ INSERT INTO Transacao (idTransacao, idItem, nifCliente, tipo, valor, dataTransac
 (10, 2, 888888888, 'compra', 2700.00, '2024-09-26', 'transferência bancária'),
 (11, 7, 444555666, 'requisição de empréstimo', 4800.00, '2024-09-29', 'transferência bancária'),
 (12, 8, 555666777, 'requisição de empréstimo', 540.00, '2024-09-30', 'dinheiro'),
-(13, 4, 111222333, 'compra', 420.00, '2024-09-30', 'dinheiro'),
+(13, 4, 111222333, 'compra', 370.00, '2024-09-30', 'dinheiro'), --- mantive e só mudei valor compra, de acordo com IA
 (14, 8, 666777888, 'compra', 1080.00, '2024-10-15', 'dinheiro'),
-(15, 9, 666777888, 'requisição de empréstimo', 2100.00, '2024-10-18', 'transferência bancária'),
+(15, 9, 777666555, 'requisição de empréstimo', 2100.00, '2024-10-18', 'transferência bancária'), --- alterado para novo cliente de acordo com sugestão da IA
 (16, 10, 777888999, 'requisição de empréstimo', 300.00, '2024-10-20', 'dinheiro'),
 (17, 10, 777888999, 'devolução de empréstimo', 330.00, '2024-11-09', 'dinheiro'),
 (18, 11, 777777777, 'requisição de empréstimo', 1200.00, '2024-11-09', 'transferência bancária'),
-(19, 9, 777888999, 'compra', 3790.00, '2024-11-20', 'transferência bancária'),
+(19, 9, 999999999, 'compra', 3520.00, '2024-11-20', 'transferência bancária'), --- alterei de 777888999 para 999999999 e baixei preço ligeiramente
 (20, 12, 888888888, 'requisição de empréstimo', 480.00, '2024-11-20', 'dinheiro');
 
 
@@ -154,12 +156,12 @@ INSERT INTO Avaliacao (idAvaliacao, idItem, nifFuncionario, dataAvaliacao, notas
 (2, 2, 555555555, '2024-08-09', 'Pintura bem preservada, tela sem danos.', 2500.00, 'novo'),
 (3, 2, 888777666, '2024-08-13', 'Pintura em muito bom estado. Pequenas imperfeições.', 2700.00, 'semi-novo'),
 (4, 3, 222222222, '2024-08-16', 'Instrumento com desgaste no verniz.', 1500.00, 'usado'),
-(5, 4, 111111111, '2024-08-22', 'Funcional, com marcas de uso.', 300.00, 'muito usado'),
+(5, 4, 111111111, '2024-08-22', 'Funcional, com marcas de uso.', 280.00, 'muito usado'), --- baixei valor da avaliação
 (6, 5, 666666666, '2024-08-27', 'Conjunto completo e em excelente estado.', 1800.00, 'semi-novo'),
 (7, 6, 444444444, '2024-09-08', 'Funcionamento sem irregularidades. Sinais leves de uso.', 2500.00, 'usado'),
 (8, 7, 555555555, '2024-09-30', 'Anel impecável. Materiais genuínos.', 8000.00, 'novo'),
 (9, 8, 222222222, '2024-10-01', 'Mecanismo funcional. Algum desgaste é evidente.', 900.00, 'muito usado'),
-(10, 9, 666666666, '2024-10-19', 'Conjunto completo e bem conservado.', 3500.00, 'semi-novo'),
+(10, 9, 666666666, '2024-10-19', 'Conjunto completo e bem conservado.', 3100.00, 'semi-novo'), --- baixei valor da avaliação ligeiramente
 (11, 10, 333333333, '2024-10-21', 'Moeda com alguns sinais de oxidação.', 500.00, 'usado'),
 (12, 11, 444444444, '2024-11-10', 'Sem imperfeições visíveis. Componentes bem conservados.', 1900.00, 'novo'),
 (13, 10, 888999111, '2024-10-28', 'Bem conservada. Levemente oxidada.', 530.00, 'usado'),
