@@ -1,5 +1,7 @@
 https://docs.google.com/document/d/1OgnnDmyLNG7FQ9gr-XBLzAGjcnD0WsJRTyWWHm-5I_I/edit?usp=sharing
 
+final -> https://docs.google.com/document/d/19YVEIyA51yoPJvi84at_xOpumc8gGGY5mErcWQTzeJ0/edit?usp=sharing
+
 ## RESUMO DAS ALTERAÇÕES DO CREATE 1 PARA O 2:
 
 ### 1. **Validação de Campos**
