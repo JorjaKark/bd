@@ -55,8 +55,9 @@ CREATE TABLE TermoEmprestimo (
     FOREIGN KEY (idItem) REFERENCES Item(idItem) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT check_datas CHECK (dataLimitePagamento > dataInicioEmprestimo),
     --constraint:garantir que o valor com juros é 110% do valor do empréstimo
-    --(a taxa a ser aplicada é sempre de 10% do valor do empréstimo)
-    CONSTRAINT check_juros CHECK (valorDevolverComJuros = valorEmprestimo * 1.10)
+    --(a taxa a ser aplicada é sempre de 10% do valor do empréstimo (com margem de +- 0.01))
+    CONSTRAINT check_juros CHECK ((valorDevolverComJuros - (valorEmprestimo * 1.10)) >= -0.01 AND
+                                    (valorDevolverComJuros - (valorEmprestimo * 1.10)) <= 0.01)
 );
 
 --esta tabela nao tem referencias
