@@ -21,23 +21,19 @@ CREATE TABLE Item (
     idItem INTEGER NOT NULL PRIMARY KEY,
     nome TEXT NOT NULL,
     dataEntrada DATE,
-    categoria TEXT NOT NULL CHECK (
+    categoria TEXT NOT NULL DEFAULT 'Não Especificado' CHECK (
         categoria IN ('Joias e Acessórios', 'Arte', 'Instrumentos Musicais',
         'Colecionáveis e Antiguidades',
         'Louça e Cerâmica',
         'Tecnologia e Informática',
-        'Desportos e Lazer', 'Outros')
+        'Desportos e Lazer', 'Outros', 'Não Especificado')
     ),
     dimensoes TEXT NOT NULL,
-    material TEXT,
+    material TEXT DEFAULT 'Não Especificado',
     precoVenda REAL CHECK (( precoVenda IS NULL OR precoVenda > 0 )), -- pode ser NULL quando não está 'à venda'
     idLoja INTEGER,
     FOREIGN KEY (idLoja) REFERENCES Loja(idLoja) ON DELETE CASCADE ON UPDATE CASCADE
 );
-
-ALTER TABLE Item 
-    ALTER COLUMN categoria SET DEFAULT 'Não Especificado',
-    ALTER COLUMN material SET DEFAULT 'Não Especificado';
 
 --esta tabela referencia: Item
 CREATE TABLE Estado (
@@ -45,11 +41,7 @@ CREATE TABLE Estado (
     tipo TEXT NOT NULL CHECK (tipo IN ('penhorado', 'à venda', 'vendido', 'devolvido')),
     dataAtribuicaoEstado DATE DEFAULT CURRENT_DATE,
     idItem INTEGER NOT NULL,
-    FOREIGN KEY (idItem) REFERENCES Item(idItem) ON DELETE CASCADE ON UPDATE CASCADE,
-    --constrait: garantir que a data de atribuição é posterior à data de entrada do item
-    CONSTRAINT check_data_atribuicao CHECK (
-        dataAtribuicaoEstado >= (SELECT dataEntrada FROM Item WHERE Item.idItem = Estado.idItem)
-    )
+    FOREIGN KEY (idItem) REFERENCES Item(idItem) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- esta tabela referencia: item
@@ -124,10 +116,6 @@ CREATE TABLE Avaliacao (
     estadoConservacao TEXT NOT NULL CHECK (estadoConservacao IN ('muito usado', 'usado', 'semi-novo', 'novo')),
     PRIMARY KEY (idAvaliacao, idItem),
     FOREIGN KEY (idItem) REFERENCES Item(idItem) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (nifFuncionario) REFERENCES Funcionario(nifFuncionario) ON DELETE CASCADE ON UPDATE CASCADE,
-    --constrait: garantir que a data de avaliação não é posterior à data de entrada do item
-    CONSTRAINT check_data_avaliacao CHECK (
-        dataAvaliacao <= (SELECT dataEntrada FROM Item WHERE Item.idItem = Avaliacao.idItem)
-    )
+    FOREIGN KEY (nifFuncionario) REFERENCES Funcionario(nifFuncionario) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
