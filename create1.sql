@@ -35,11 +35,7 @@ CREATE TABLE Estado (
     tipo TEXT NOT NULL CHECK (tipo IN ('penhorado', 'à venda', 'vendido', 'devolvido')),
     dataAtribuicaoEstado DATE DEFAULT CURRENT_DATE,
     idItem INTEGER NOT NULL,
-    FOREIGN KEY (idItem) REFERENCES Item(idItem) ON DELETE CASCADE ON UPDATE CASCADE,
-    --constrait: garantir que a data de atribuição é posterior à data de entrada do item
-    CONSTRAINT check_data_atribuicao CHECK (
-        dataAtribuicaoEstado >= (SELECT dataEntrada FROM Item WHERE Item.idItem = Estado.idItem)
-    )
+    FOREIGN KEY (idItem) REFERENCES Item(idItem) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- esta tabela referencia: item
@@ -54,7 +50,8 @@ CREATE TABLE TermoEmprestimo (
     CONSTRAINT check_datas CHECK (dataLimitePagamento > dataInicioEmprestimo),
     --constraint:garantir que o valor com juros é 110% do valor do empréstimo
     --(a taxa a ser aplicada é sempre de 10% do valor do empréstimo)
-    CONSTRAINT check_juros CHECK (valorDevolverComJuros = valorEmprestimo * 1.10)
+    CONSTRAINT check_juros CHECK ((valorDevolverComJuros - (valorEmprestimo * 1.10)) >= -0.01 AND
+                                    (valorDevolverComJuros - (valorEmprestimo * 1.10)) <= 0.01)
 );
 
 --esta tabela nao tem referencias
@@ -109,10 +106,6 @@ CREATE TABLE Avaliacao (
     estadoConservacao TEXT NOT NULL CHECK (estadoConservacao IN ('muito usado', 'usado', 'semi-novo', 'novo')),
     PRIMARY KEY (idAvaliacao, idItem),
     FOREIGN KEY (idItem) REFERENCES Item(idItem) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (nifFuncionario) REFERENCES Funcionario(nifFuncionario) ON DELETE CASCADE ON UPDATE CASCADE,
-    --constrait: garantir que a data de avaliação não é posterior à data de entrada do item
-    CONSTRAINT check_data_avaliacao CHECK (
-        dataAvaliacao <= (SELECT dataEntrada FROM Item WHERE Item.idItem = Avaliacao.idItem)
-    )
+    FOREIGN KEY (nifFuncionario) REFERENCES Funcionario(nifFuncionario) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
